@@ -1,0 +1,75 @@
+---
+import Reveal from "./react/Reveal.tsx";
+import WaIcon from "./WaIcon.astro";
+const WA_QUOTE = "https://wa.me/62881026050105?text=Hello%20hallovanilla%2C%20I%20would%20like%20to%20request%20a%20quotation%20for%20vanilla%20beans.";
+---
+
+<section class="bg-white py-24 md:py-28" id="contact">
+  <div class="mx-auto w-[min(1260px,92%)]">
+    <Reveal client:visible variant="zoom">
+      <div class="grid overflow-hidden rounded-[26px] border border-line bg-cream shadow-[0_20px_45px_rgba(30,19,11,0.12)] lg:grid-cols-[1.15fr_0.85fr]">
+        <div class="p-10 md:p-14">
+          <span class="mb-3 inline-block text-[0.76rem] font-bold uppercase tracking-[0.22em] text-toffee">Get in touch</span>
+          <h2 class="font-serif-display text-[clamp(2.4rem,3.8vw,3.2rem)] font-medium">Let’s talk vanilla.</h2>
+          <p class="mb-9 mt-4 max-w-[520px] leading-relaxed text-muted">Whether you are a bakery owner, pastry chef, home baker, or looking for regular supply — we are happy to assist.</p>
+          <div class="grid gap-5">
+            <a href="https://wa.me/62881026050105" target="_blank" rel="noopener" class="group flex items-center gap-4 rounded-2xl border border-transparent p-2 transition hover:border-line hover:bg-white">
+              <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-[#25D366] text-white shadow-sm transition group-hover:scale-110">
+                <WaIcon size={22} />
+              </div>
+              <div><small class="mb-0.5 block text-[0.74rem] font-bold uppercase tracking-[0.12em] text-toffee">WhatsApp</small><strong class="text-[1.05rem]">+62 881-0260-50105</strong></div>
+            </a>
+            <a href="mailto:hallovanillaindonesia@gmail.com" class="group flex items-center gap-4 rounded-2xl border border-transparent p-2 transition hover:border-line hover:bg-white">
+              <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-line bg-white text-toffee shadow-sm transition group-hover:scale-110 group-hover:border-amber-glow">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              </div>
+              <div><small class="mb-0.5 block text-[0.74rem] font-bold uppercase tracking-[0.12em] text-toffee">Email</small><span class="text-[1.02rem] font-semibold break-all">hallovanillaindonesia@gmail.com</span></div>
+            </a>
+            <a href="https://instagram.com/hallovanilla.indonesia" target="_blank" rel="noopener" class="group flex items-center gap-4 rounded-2xl border border-transparent p-2 transition hover:border-line hover:bg-white">
+              <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-line bg-white text-toffee shadow-sm transition group-hover:scale-110 group-hover:border-amber-glow">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </div>
+              <div><small class="mb-0.5 block text-[0.74rem] font-bold uppercase tracking-[0.12em] text-toffee">Instagram</small><span class="text-[1.02rem] font-semibold">@hallovanilla.indonesia</span></div>
+            </a>
+            <div class="flex items-center gap-4 p-2">
+              <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-line bg-white text-toffee shadow-sm">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div><small class="mb-0.5 block text-[0.74rem] font-bold uppercase tracking-[0.12em] text-toffee">Location</small><strong class="text-[1rem]">Banyu Urip Wetan 5 No. 15, Surabaya</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="relative flex flex-col justify-center overflow-hidden border-t border-white/10 bg-gradient-to-br from-night to-[#2E1B10] p-10 text-white md:p-12 lg:border-l lg:border-t-0">
+          <div class="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-amber-glow/20 blur-[80px]"></div>
+          <span class="mb-2.5 block text-[0.75rem] font-bold uppercase tracking-[0.18em] text-amber-light">Direct Quotation</span>
+          <h3 class="font-serif-display mb-3.5 text-4xl font-medium">Need a quotation?</h3>
+          <p class="mb-8 text-[0.95rem] leading-relaxed text-[#D3C3B6]">Send variety (Planifolia / Tahitian / Powder) + quantity via WhatsApp — or email us anytime.</p>
+          <a href={WA_QUOTE} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-3 rounded-full bg-[#25D366] px-8 py-4 text-[1rem] font-bold text-white shadow-[0_10px_25px_rgba(37,211,102,0.35)] transition hover:-translate-y-1 hover:bg-[#20BA5A]">
+            <WaIcon size={20} />
+            <span>Chat on WhatsApp</span>
+          </a>
+          <a href="mailto:hallovanillaindonesia@gmail.com?subject=Quotation%20Vanilla%20Beans%20—%20hallovanilla" class="mt-3 inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-8 py-3.5 text-[0.95rem] font-semibold transition hover:border-amber-light hover:text-amber-light">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            <span>Email for Quotation</span>
+          </a>
+          <span class="mt-4 block text-center text-[0.76rem] text-[#A6958B]">Fast response • Domestic & export inquiries</span>
+        </div>
+      </div>
+    </Reveal>
+
+    <Reveal client:visible variant="up" delay={0.1}>
+      <div class="mt-12 overflow-hidden rounded-[20px] border border-line bg-cream shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-white px-7 py-5">
+          <div class="flex items-center gap-3">
+            <div class="h-3 w-3 rounded-full bg-[#25D366] shadow-[0_0_12px_#25D366]"></div>
+            <div><span class="text-[0.92rem] font-bold">Direct Surabaya Hub & Warehousing</span><span class="ml-1.5 hidden text-[0.8rem] text-muted sm:inline">• Banyu Urip Wetan 5 No. 15</span></div>
+          </div>
+          <a href="https://maps.google.com/?q=Banyu+Urip+Wetan+5+No+15+Surabaya" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-full border border-line bg-sand px-4 py-2 text-[0.82rem] font-semibold text-pod transition hover:bg-amber-glow hover:text-night-deep">Open in Google Maps ↗</a>
+        </div>
+        <div class="h-[380px] w-full bg-[#EAE6DF]">
+          <iframe title="hallovanilla Location Map" src="https://maps.google.com/maps?q=Banyu%20Urip%20Wetan%205%20No.%2015,%20Surabaya,%20East%20Java,%20Indonesia&t=&z=15&ie=UTF8&iwloc=&output=embed" class="h-full w-full border-0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </Reveal>
+  </div>
+</section>

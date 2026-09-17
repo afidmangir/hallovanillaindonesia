@@ -1,0 +1,32 @@
+---
+import Reveal from "./react/Reveal.tsx";
+---
+
+<section class="border-b border-line bg-white py-24 md:py-28" id="story">
+  <div class="mx-auto grid w-[min(1260px,92%)] items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+    <Reveal client:visible variant="left">
+      <span class="mb-3 inline-block text-[0.76rem] font-bold uppercase tracking-[0.22em] text-toffee">The vanilla bean</span>
+      <h2 class="font-serif-display mb-6 text-[clamp(2.4rem,4vw,3.4rem)] font-medium leading-tight">A little bean with a remarkable aroma.</h2>
+      <p class="mb-5 text-[1.05rem] leading-[1.8] text-muted">
+        Real vanilla comes from the cured seed pods of climbing orchids in the genus <em>Vanilla</em>. Inside each pod are thousands of tiny seeds surrounded by fragrant oils that develop during a careful, month-long curing process.
+      </p>
+      <p class="text-[1.05rem] leading-[1.8] text-muted">
+        Unlike artificial vanillin, real vanilla beans offer complex layers — woody, sweet, floral, and warm. Used by bakers, pastry chefs, and home cooks to elevate cakes, custards, ice creams, and desserts.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <span class="rounded-full bg-sand px-4 py-2 text-[0.8rem] font-semibold text-pod transition hover:bg-amber-glow hover:text-night-deep">Grade A Gourmet</span>
+        <span class="rounded-full bg-sand px-4 py-2 text-[0.8rem] font-semibold text-pod transition hover:bg-amber-glow hover:text-night-deep">Moisture 30–35%</span>
+        <span class="rounded-full bg-sand px-4 py-2 text-[0.8rem] font-semibold text-pod transition hover:bg-amber-glow hover:text-night-deep">Hand Selected</span>
+      </div>
+    </Reveal>
+    <Reveal client:visible variant="zoom" delay={0.15}>
+      <div class="group relative overflow-hidden rounded-[26px] border border-line bg-tint shadow-[0_20px_45px_rgba(30,19,11,0.12)]">
+        <img src="/hallovanilla1.jpeg" alt="Vanilla orchid vine and growing beans" class="h-[480px] w-full object-cover transition duration-[1.2s] group-hover:rotate-1 group-hover:scale-110" loading="lazy" />
+        <div class="absolute bottom-5 left-5 right-5 flex items-center gap-3 rounded-2xl bg-night-deep/80 px-5 py-3.5 text-cream opacity-0 backdrop-blur transition-all duration-500 translate-y-4 group-hover:translate-y-0 group-hover:opacity-100">
+          <span class="h-2 w-2 rounded-full bg-amber-glow"></span>
+          <span class="text-[0.85rem] font-medium">Origin vines — East Java, Indonesia</span>
+        </div>
+      </div>
+    </Reveal>
+  </div>
+</section>

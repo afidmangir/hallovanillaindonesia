@@ -1,0 +1,18 @@
+---
+import ProductCarousel from "./react/ProductCarousel.tsx";
+import Reveal from "./react/Reveal.tsx";
+---
+
+<section class="relative overflow-hidden bg-night py-24 text-cream md:py-28" id="products">
+  <div class="pointer-events-none absolute -top-32 left-1/2 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-amber-glow/10 blur-[120px]"></div>
+  <div class="relative mx-auto w-[min(1260px,92%)]">
+    <Reveal client:visible variant="blur">
+      <span class="mb-3 inline-block text-[0.76rem] font-bold uppercase tracking-[0.22em] text-amber-light">Our varieties</span>
+      <h2 class="font-serif-display text-[clamp(2.4rem,4vw,3.5rem)] font-medium leading-tight">Choose your <span class="italic text-amber-light">vanilla profile</span></h2>
+      <p class="mt-3 max-w-[520px] text-[#CFBEB2]">Three signature products — Planifolia, Tahitian & Powder — all photographed from our own stock.</p>
+    </Reveal>
+    <div class="mt-10">
+      <ProductCarousel client:visible />
+    </div>
+  </div>
+</section>

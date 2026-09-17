@@ -1,0 +1,21 @@
+---
+import HeroIntro from "./react/HeroIntro.tsx";
+import HeroVisual from "./react/HeroVisual.tsx";
+---
+
+<section class="dot-grid relative overflow-hidden py-16 md:py-20" id="home">
+  <div class="relative z-[1] mx-auto grid w-[min(1260px,92%)] items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+    <HeroIntro client:load />
+    <HeroVisual client:load />
+  </div>
+</section>
+
+<div aria-hidden="true" class="overflow-hidden whitespace-nowrap border-y border-white/10 bg-night py-4 text-cream">
+  <div class="animate-marquee inline-flex gap-12">
+    {["Vanilla Planifolia","Tahitian Vanilla","Vanilla Powder","Hand Pollinated","Rich Vanillin Aroma","Surabaya Distribution","Patient Sun Curing","Vanilla Planifolia","Tahitian Vanilla","Vanilla Powder","Hand Pollinated","Rich Vanillin Aroma","Surabaya Distribution","Patient Sun Curing"].map((t) => (
+      <div class="inline-flex items-center gap-3.5 text-[0.85rem] font-medium uppercase tracking-[0.2em] text-[#E6DAD0]">
+        <span>{t}</span><span class="text-lg text-amber-glow">✦</span>
+      </div>
+    ))}
+  </div>
+</div>
