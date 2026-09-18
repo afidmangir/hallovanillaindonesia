@@ -36,6 +36,10 @@ export default function HeroVisual() {
       style={{ perspective: 1000 }}
       className="relative mx-auto w-full max-w-[500px]"
     >
+      {/* cahaya lembut di belakang foto */}
+      <div aria-hidden className="absolute -inset-10 rounded-[40px] bg-gradient-to-br from-amber-glow/25 via-amber-glow/10 to-transparent blur-3xl" />
+      {/* bingkai offset premium */}
+      <div aria-hidden className="absolute -inset-3 rotate-2 rounded-[30px] border border-amber-glow/30" />
       <motion.div
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
         className="relative aspect-[4/5] overflow-hidden rounded-[26px] border border-amber-glow/25 bg-night shadow-[0_20px_45px_rgba(30,19,11,0.12)]"
@@ -90,7 +94,7 @@ export default function HeroVisual() {
         initial={{ opacity: 0, y: -16, scale: 0.9 }}
         animate={ready ? { opacity: 1, y: 0, scale: 1 } : {}}
         transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 18 }}
-        className="absolute -top-4 -right-3 md:-right-5"
+        className="absolute -top-5 right-3 md:-right-5"
       >
         <motion.div
           animate={{ y: [0, -9, 0] }}
@@ -109,7 +113,7 @@ export default function HeroVisual() {
         initial={{ opacity: 0, y: 16, scale: 0.9 }}
         animate={ready ? { opacity: 1, y: 0, scale: 1 } : {}}
         transition={{ delay: 0.65, type: "spring", stiffness: 200, damping: 18 }}
-        className="absolute -bottom-4 -left-3 md:-left-5"
+        className="absolute -bottom-5 left-3 md:-left-5"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}

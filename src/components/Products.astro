@@ -3,8 +3,8 @@ import ProductCarousel from "./react/ProductCarousel.tsx";
 import Reveal from "./react/Reveal.tsx";
 ---
 
-<section class="relative overflow-hidden bg-night py-24 text-cream md:py-28" id="products">
-  <div class="pointer-events-none absolute -top-32 left-1/2 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-amber-glow/10 blur-[120px]"></div>
+<section class="relative bg-night py-24 text-cream md:py-28" id="products">
+  <div class="pointer-events-none absolute inset-0 overflow-hidden"><div class="absolute -top-32 left-1/2 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-amber-glow/10 blur-[120px]"></div></div>
   <div class="relative mx-auto w-[min(1260px,92%)]">
     <Reveal client:visible variant="blur">
       <span class="mb-3 inline-block text-[0.76rem] font-bold uppercase tracking-[0.22em] text-amber-light">Our varieties</span>

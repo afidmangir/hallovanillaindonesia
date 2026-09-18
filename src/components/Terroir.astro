@@ -1,28 +1,7 @@
 ---
-import Reveal from "./react/Reveal.tsx";
+import TerroirSticky from "./react/TerroirSticky.tsx";
 ---
 
-<section class="relative overflow-hidden py-28 text-cream md:py-36" id="terroir">
-  <div class="absolute inset-0">
-    <img src="/hallovanilla3.jpeg" alt="" aria-hidden="true" class="h-full w-full scale-110 object-cover" loading="lazy" />
-  </div>
-  <div class="absolute inset-0 z-[1]" style="background: radial-gradient(circle at center, rgba(35,22,14,0.68) 0%, rgba(22,13,7,0.93) 100%);"></div>
-  <div class="relative z-[2] mx-auto w-[min(1260px,92%)] max-w-[860px] text-center">
-    <Reveal client:visible variant="blur">
-      <span class="mb-5 inline-block rounded-full border border-amber-glow/35 bg-night/45 px-5 py-1.5 text-[0.8rem] font-bold uppercase tracking-[0.25em] text-amber-light backdrop-blur">From East Java Terroir to Global Cuisine</span>
-    </Reveal>
-    <Reveal client:visible variant="up" delay={0.1}>
-      <h2 class="font-serif-display text-[clamp(2.6rem,5vw,4.2rem)] font-medium leading-tight">Grown with Patience,<br />Cured with Reverence.</h2>
-    </Reveal>
-    <Reveal client:visible variant="blur" delay={0.2}>
-      <p class="font-serif-display mx-auto mb-10 mt-6 max-w-[720px] text-[1.28rem] italic leading-[1.8] text-amber-soft">“Every single vanilla orchid opens for only a few hours in the cool morning mist. That fleeting moment shapes weeks of tender artisan handcraft.”</p>
-    </Reveal>
-    <div class="flex flex-wrap justify-center gap-4">
-      {["Slow Sun Sweating", "Premium Moisture 30-35%", "Rich Natural Vanillin"].map((t, i) => (
-        <Reveal client:visible variant="zoom" delay={0.3 + i * 0.12}>
-          <div class="inline-flex items-center gap-2 rounded-full border border-amber-soft/25 bg-white/10 px-5 py-2.5 text-[0.82rem] font-semibold uppercase tracking-[0.08em] backdrop-blur transition hover:border-amber-glow hover:bg-white/15"><span class="h-1.5 w-1.5 rounded-full bg-amber-glow"></span>{t}</div>
-        </Reveal>
-      ))}
-    </div>
-  </div>
+<section class="relative bg-night-deep text-cream" id="terroir">
+  <TerroirSticky client:visible />
 </section>

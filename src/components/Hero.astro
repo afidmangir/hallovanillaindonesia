@@ -3,8 +3,10 @@ import HeroIntro from "./react/HeroIntro.tsx";
 import HeroVisual from "./react/HeroVisual.tsx";
 ---
 
-<section class="dot-grid relative overflow-hidden py-16 md:py-20" id="home">
-  <div class="relative z-[1] mx-auto grid w-[min(1260px,92%)] items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+<section class="dot-grid relative overflow-hidden pb-16 pt-28 md:pb-20 md:pt-36" id="home">
+  <div aria-hidden class="pointer-events-none absolute -top-40 right-[-10%] h-[480px] w-[480px] rounded-full bg-amber-glow/[0.13] blur-[130px]"></div>
+  <div aria-hidden class="pointer-events-none absolute bottom-[-20%] left-[-8%] h-[380px] w-[380px] rounded-full bg-toffee/[0.08] blur-[120px]"></div>
+  <div class="relative z-[1] mx-auto grid w-[min(1260px,92%)] items-center gap-14 lg:grid-cols-[1.12fr_0.88fr] lg:gap-10">
     <HeroIntro client:load />
     <HeroVisual client:load />
   </div>
