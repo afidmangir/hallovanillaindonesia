@@ -96,7 +96,7 @@ export default function ProcessTimeline() {
                 viewport={{ once: true, margin: "-70px" }}
                 transition={{ duration: 0.8, ease }}
                 whileHover={{ y: -8, rotate: left ? -0.6 : 0.6, transition: { duration: 0.3 } }}
-                className={`group ml-16 flex-1 md:ml-0 md:w-[calc(50%-3.5rem)] ${
+                className={`group ml-16 flex-1 md:ml-0 md:w-[calc(50%-4rem)] md:grow-0 ${
                   left ? "md:mr-auto md:text-right" : "md:ml-auto"
                 }`}
               >

@@ -1,6 +1,15 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { useHalloReady } from "./useHalloReady";
+
+const SLIDES = [
+  { src: "/hallovanilla4.jpeg", alt: "Gourmet Cured Vanilla Beans — hallovanilla" },
+  { src: "/hallovanilla1.jpeg", alt: "Vanilla orchid vine and growing beans — hallovanilla" },
+  { src: "/hallovanilla2.jpeg", alt: "Lush vanilla plantation — hallovanilla" },
+  { src: "/hallovanilla3.jpeg", alt: "Artisan curing and sun-sweating — hallovanilla" },
+];
+
+const SLIDE_MS = 5000;
 
 export default function HeroVisual() {
   // Tahan entrance sampai loading veil selesai terangkat
@@ -14,6 +23,20 @@ export default function HeroVisual() {
   const rotateY = useTransform(sx, [0, 1], [-9, 9]);
   const imgX = useTransform(sx, [0, 1], [-12, 12]);
   const imgY = useTransform(sy, [0, 1], [-10, 10]);
+
+  // Slideshow fade — jalan setelah veil terangkat
+  const [slide, setSlide] = useState(0);
+  useEffect(() => {
+    SLIDES.forEach((s) => {
+      const im = new Image();
+      im.src = s.src;
+    });
+  }, []);
+  useEffect(() => {
+    if (!ready) return;
+    const t = setInterval(() => setSlide((i) => (i + 1) % SLIDES.length), SLIDE_MS);
+    return () => clearInterval(t);
+  }, [ready]);
 
   const onMove = (e: React.MouseEvent) => {
     const r = ref.current?.getBoundingClientRect();
@@ -44,15 +67,26 @@ export default function HeroVisual() {
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
         className="relative aspect-[4/5] overflow-hidden rounded-[26px] border border-amber-glow/25 bg-night shadow-[0_20px_45px_rgba(30,19,11,0.12)]"
       >
-        <motion.img
-          src="/hallovanilla4.jpeg"
-          alt="Gourmet Cured Vanilla Beans — hallovanilla"
-          className="h-full w-full object-cover"
-          style={{ x: imgX, y: imgY, scale: 1.12 }}
-          initial={{ scale: 1.25 }}
-          animate={ready ? { scale: 1.12 } : {}}
-          transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-        />
+        {/* slideshow fade + parallax (skala 1.12 menutup tepi saat tilt) */}
+        <motion.div style={{ x: imgX, y: imgY }} className="absolute inset-0">
+          <div className="h-full w-full scale-[1.12]">
+            <AnimatePresence>
+              <motion.img
+                key={slide}
+                src={SLIDES[slide].src}
+                alt={SLIDES[slide].alt}
+                className="absolute inset-0 h-full w-full object-cover"
+                initial={{ opacity: 0, scale: 1.1 }}
+                animate={{ opacity: ready ? 1 : 0, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{
+                  opacity: { duration: 1.4, ease: [0.16, 1, 0.3, 1] },
+                  scale: { duration: 6, ease: "linear" },
+                }}
+              />
+            </AnimatePresence>
+          </div>
+        </motion.div>
         <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-night-deep/90 via-night-deep/10 to-transparent p-8 text-white">
           <motion.span
             initial={{ opacity: 0, y: 14 }}

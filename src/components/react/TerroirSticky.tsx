@@ -43,7 +43,7 @@ export default function TerroirSticky() {
           style={{ x: wordX }}
           className="font-serif-display pointer-events-none absolute top-1/2 left-0 -translate-y-1/2 select-none whitespace-nowrap text-[20vw] font-medium italic leading-none text-white/[0.06]"
         >
-          East Java — Terroir — East Java — Terroir —
+          HALLOVANILLA — HALLOVANILLA — HALLOVANILLA —
         </motion.div>
 
         {/* indikator progres samping */}
