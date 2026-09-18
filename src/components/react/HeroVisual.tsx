@@ -80,11 +80,12 @@ export default function HeroVisual() {
         <motion.div style={{ x: imgX, y: imgY }} className="absolute inset-0">
           <div className="h-full w-full scale-[1.12]">
             <AnimatePresence>
-              <motion.img
-                key={slide}
-                src={SLIDES[slide].src}
-                alt={SLIDES[slide].alt}
-                className="absolute inset-0 h-full w-full object-cover"
+            <motion.img
+              key={slide}
+              src={SLIDES[slide].src}
+              alt={SLIDES[slide].alt}
+              fetchPriority="high"
+              className="absolute inset-0 h-full w-full object-cover"
                 initial={{ opacity: 0, scale: 1.1 }}
                 animate={{ opacity: ready ? 1 : 0, scale: 1 }}
                 exit={{ opacity: 0 }}
