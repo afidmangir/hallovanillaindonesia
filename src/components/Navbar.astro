@@ -13,17 +13,18 @@ const LINKS = [
 ---
 
 <header id="siteHeader">
+  <div id="scrollProgress" aria-hidden="true"></div>
   <!-- Pill melayang: transparan di atas, kaca blur saat scroll. Tanpa border. -->
   <div class="nav-pill">
-    <div class="nav-shell flex items-center justify-between gap-4">
-      <!-- KIRI: logo + teks -->
-      <a href="#home" class="flex min-w-0 items-center gap-3" aria-label="hallovanilla home">
-        <img src="/logo-white.png" alt="hallovanilla logo" class="logo-pop -ml-3.5 h-[74px] w-[74px] shrink-0 rounded-full bg-white object-cover sm:-ml-7 sm:h-[86px] sm:w-[86px]" />
-        <span class="font-serif-display truncate text-[1.3rem] font-semibold lowercase tracking-tight text-cocoa sm:text-[1.65rem]">hallovanilla.indonesia</span>
+    <div class="nav-shell flex items-center justify-between gap-2 sm:gap-4">
+      <!-- KIRI: logo + teks (sembunyi saat di paling atas) -->
+      <a href="#home" class="brand-lockup flex min-w-0 items-center gap-2 sm:gap-2.5" aria-label="hallovanilla home">
+        <img src="/logo-white.png" alt="hallovanilla logo" class="logo-pop -ml-2 mt-0.5 h-[52px] w-[52px] shrink-0 rounded-full bg-white object-cover sm:-ml-3 sm:mt-1 sm:h-[64px] sm:w-[64px] lg:h-[72px] lg:w-[72px]" />
+        <span class="font-serif-display truncate whitespace-nowrap text-[clamp(0.8rem,0.15rem+3.4vw,1.5rem)] font-semibold lowercase tracking-tight text-cocoa">hallovanilla.indonesia</span>
       </a>
 
       <!-- TENGAH: nav desktop -->
-      <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary">
+      <nav class="hidden items-center gap-1 md:flex" aria-label="Primary">
         {LINKS.map((l) => (
           <a href={l.href} data-spy class="nav-link">{l.label}</a>
         ))}
@@ -31,7 +32,7 @@ const LINKS = [
 
       <!-- KANAN: sosmed (tablet/desktop) + toggle (mobile) -->
       <div class="flex shrink-0 items-center gap-2">
-        <div class="hidden items-center gap-2 md:flex">
+        <div class="hidden items-center gap-2 lg:flex">
           <a href={EMAIL} aria-label="Email hallovanilla" title="hallovanillaindonesia@gmail.com" class="nav-icon">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
           </a>
@@ -42,7 +43,7 @@ const LINKS = [
             <WaIcon size={18} />
           </a>
         </div>
-        <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false" class="nav-burger lg:hidden">
+        <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false" class="nav-burger md:hidden">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -50,7 +51,7 @@ const LINKS = [
   </div>
 
   <!-- Mobile menu fullscreen -->
-  <div id="mobileMenu" class="lg:hidden" aria-hidden="true">
+  <div id="mobileMenu" class="md:hidden" aria-hidden="true">
     <div class="menu-inner">
       <div aria-hidden class="menu-glow menu-glow-a"></div>
       <div aria-hidden class="menu-glow menu-glow-b"></div>
@@ -96,6 +97,25 @@ const LINKS = [
     right: 0;
     z-index: 100;
     pointer-events: none; /* hanya pill & menu yang bisa diklik */
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  }
+  /* Garis progres scroll — tipis di tepi atas viewport */
+  #scrollProgress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    z-index: 101;
+    pointer-events: none;
+    background: linear-gradient(90deg, var(--color-amber-deep), var(--color-amber-glow), var(--color-amber-light));
+    border-radius: 0 3px 3px 0;
+    box-shadow: 0 0 12px rgba(198, 139, 69, 0.55);
+  }
+
+  /* Brand selalu tampil */
+  #siteHeader .brand-lockup {
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
   #siteHeader .nav-pill {
     pointer-events: auto;
@@ -120,7 +140,7 @@ const LINKS = [
       0 24px 55px -22px rgba(35, 23, 14, calc(var(--hp) * 0.32));
   }
   #siteHeader .nav-shell {
-    height: calc(68px - (var(--hp) * 10px));
+    height: calc(62px - (var(--hp) * 6px));
   }
 
   /* Logo menyembul keluar dari pill */
@@ -134,11 +154,18 @@ const LINKS = [
   #siteHeader .nav-link {
     position: relative;
     border-radius: 9999px;
-    padding: 0.55rem 1.05rem;
-    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.83rem;
     font-weight: 500;
     color: var(--color-muted);
     transition: color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    white-space: nowrap;
+  }
+  @media (min-width: 1024px) {
+    #siteHeader .nav-link {
+      padding: 0.55rem 1.05rem;
+      font-size: 0.9rem;
+    }
   }
   #siteHeader .nav-link:hover {
     color: var(--color-cocoa);
@@ -388,6 +415,7 @@ const LINKS = [
 
 <script>
   const header = document.getElementById('siteHeader');
+  const progress = document.getElementById('scrollProgress');
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
 
@@ -395,8 +423,11 @@ const LINKS = [
   let ticking = false;
   const applyProgress = () => {
     ticking = false;
-    const p = Math.min(1, Math.max(0, window.scrollY / 220));
+    const y = window.scrollY;
+    const p = Math.min(1, Math.max(0, y / 220));
     header?.style.setProperty('--hp', p.toFixed(3));
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if (progress) progress.style.width = (max > 0 ? (y / max) * 100 : 0).toFixed(2) + '%';
   };
   const onScroll = () => {
     if (!ticking) {
@@ -422,7 +453,7 @@ const LINKS = [
     if (e.key === 'Escape') setMenu(false);
   });
   window.addEventListener('resize', () => {
-    if (window.innerWidth >= 1024) setMenu(false);
+    if (window.innerWidth >= 768) setMenu(false);
   });
 
   // Scrollspy: tandai link section yang sedang terlihat

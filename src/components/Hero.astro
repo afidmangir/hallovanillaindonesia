@@ -3,9 +3,10 @@ import HeroIntro from "./react/HeroIntro.tsx";
 import HeroVisual from "./react/HeroVisual.tsx";
 ---
 
-<section class="dot-grid relative overflow-hidden pb-16 pt-28 md:pb-20 md:pt-36" id="home">
+<section class="dot-grid relative overflow-hidden pb-16 pt-24 md:pb-20 md:pt-28" id="home">
   <div aria-hidden class="pointer-events-none absolute -top-40 right-[-10%] h-[480px] w-[480px] rounded-full bg-amber-glow/[0.13] blur-[130px]"></div>
   <div aria-hidden class="pointer-events-none absolute bottom-[-20%] left-[-8%] h-[380px] w-[380px] rounded-full bg-toffee/[0.08] blur-[120px]"></div>
+  <div aria-hidden class="font-serif-display pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 select-none whitespace-nowrap text-[19vw] font-medium italic leading-none text-pod/[0.045]">vanilla</div>
   <div class="relative z-[1] mx-auto grid w-[min(1260px,92%)] items-center gap-14 lg:grid-cols-[2fr_1fr] lg:gap-8">
     <HeroIntro client:load />
     <HeroVisual client:load />

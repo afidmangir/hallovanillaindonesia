@@ -71,8 +71,8 @@ export default function ProcessTimeline() {
         {STEPS.map((s, i) => {
           const left = i % 2 === 0;
           return (
-            <div key={s.n} className="relative flex items-start gap-5 pl-0 md:items-center md:gap-0 md:pl-0">
-              {/* titik node */}
+            <div key={s.n} className="relative flex items-start gap-5 md:grid md:grid-cols-2 md:items-center md:gap-x-20">
+              {/* titik node + konektor ke kartu (desktop) */}
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
@@ -80,6 +80,18 @@ export default function ProcessTimeline() {
                 transition={{ type: "spring", stiffness: 320, damping: 18 }}
                 className="absolute left-[27px] top-8 z-10 -translate-x-1/2 md:left-1/2 md:top-1/2 md:-translate-y-1/2"
               >
+                <motion.span
+                  aria-hidden
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.6, delay: 0.25, ease }}
+                  className={`absolute top-1/2 hidden h-[2px] w-4 -translate-y-1/2 md:block ${
+                    left
+                      ? "right-full origin-right bg-gradient-to-l from-amber-glow/70 to-transparent"
+                      : "left-full origin-left bg-gradient-to-r from-amber-glow/70 to-transparent"
+                  }`}
+                />
                 <motion.div
                   animate={{ boxShadow: ["0 0 0 0 rgba(198,139,69,0.5)", "0 0 0 14px rgba(198,139,69,0)"] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: i * 0.4 }}
@@ -96,8 +108,8 @@ export default function ProcessTimeline() {
                 viewport={{ once: true, margin: "-70px" }}
                 transition={{ duration: 0.8, ease }}
                 whileHover={{ y: -8, rotate: left ? -0.6 : 0.6, transition: { duration: 0.3 } }}
-                className={`group ml-16 flex-1 md:ml-0 md:w-[calc(50%-4rem)] md:grow-0 ${
-                  left ? "md:mr-auto md:text-right" : "md:ml-auto"
+                className={`group ml-16 flex-1 md:ml-0 md:row-start-1 ${
+                  left ? "md:col-start-1 md:text-right" : "md:col-start-2"
                 }`}
               >
                 <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white p-8 shadow-sm transition-shadow duration-500 hover:border-amber-glow hover:shadow-[0_20px_45px_rgba(30,19,11,0.15)]">
@@ -128,9 +140,6 @@ export default function ProcessTimeline() {
                   </div>
                 </div>
               </motion.div>
-
-              {/* spacer sisi berlawanan (desktop) */}
-              <div aria-hidden className="hidden flex-1 md:block" />
             </div>
           );
         })}

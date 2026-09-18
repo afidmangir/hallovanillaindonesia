@@ -69,12 +69,12 @@ export default function HeroVisual() {
       className="relative w-full"
     >
       {/* cahaya lembut di belakang foto */}
-      <div aria-hidden className="absolute -inset-10 rounded-[40px] bg-gradient-to-br from-amber-glow/25 via-amber-glow/10 to-transparent blur-3xl" />
-      {/* bingkai offset premium */}
-      <div aria-hidden className="absolute -inset-3 rotate-2 rounded-[30px] border border-amber-glow/30" />
+      <div aria-hidden className="absolute -inset-10 rounded-full bg-gradient-to-br from-amber-glow/25 via-amber-glow/10 to-transparent blur-3xl" />
+      {/* bingkai arch offset */}
+      <div aria-hidden className="absolute -inset-3 rotate-2 rounded-b-[30px] rounded-t-[230px] border border-amber-glow/30" />
       <motion.div
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className="relative aspect-[4/5] overflow-hidden rounded-[26px] border border-amber-glow/25 bg-night shadow-[0_20px_45px_rgba(30,19,11,0.12)]"
+        className="relative aspect-[4/5] overflow-hidden rounded-b-[26px] rounded-t-[220px] border border-amber-glow/25 bg-night shadow-[0_20px_45px_rgba(30,19,11,0.12)]"
       >
         {/* slideshow fade + parallax (skala 1.12 menutup tepi saat tilt) */}
         <motion.div style={{ x: imgX, y: imgY }} className="absolute inset-0">
@@ -139,7 +139,7 @@ export default function HeroVisual() {
         animate={ready ? { opacity: 1, scale: 1, y: 0 } : {}}
         transition={{ delay: 0.85, type: "spring", stiffness: 200, damping: 17 }}
         style={{ y: floatAY, rotate: floatARotate }}
-        className="absolute -left-3 top-16 z-10 md:-left-10"
+        className="absolute -left-2 top-24 z-10 md:-left-12"
       >
         <motion.div
           animate={{ y: [0, -11, 0] }}
@@ -157,7 +157,7 @@ export default function HeroVisual() {
         animate={ready ? { opacity: 1, scale: 1, y: 0 } : {}}
         transition={{ delay: 1, type: "spring", stiffness: 200, damping: 17 }}
         style={{ y: floatBY, rotate: floatBRotate }}
-        className="absolute -right-3 bottom-24 z-10 md:-right-8"
+        className="absolute -right-2 bottom-28 z-10 md:-right-10"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
@@ -169,26 +169,6 @@ export default function HeroVisual() {
         </motion.div>
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 16, scale: 0.9 }}
-        animate={ready ? { opacity: 1, y: 0, scale: 1 } : {}}
-        transition={{ delay: 0.65, type: "spring", stiffness: 200, damping: 18 }}
-        className="absolute -bottom-5 left-3 md:-left-5"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0.6 }}
-          className="flex items-center gap-3 rounded-2xl border border-white/15 bg-night px-5 py-3.5 text-white shadow-[0_24px_60px_rgba(15,8,4,0.55)]"
-        >
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute h-full w-full animate-ping rounded-full bg-[#25D366]" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[#25D366] shadow-[0_0_10px_#25D366]" />
-          </span>
-          <span className="text-[0.8rem] tracking-wide">
-            Hub: <strong className="text-amber-light">Surabaya, Indonesia</strong>
-          </span>
-        </motion.div>
-      </motion.div>
     </motion.div>
     </motion.div>
   );
