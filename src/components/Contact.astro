@@ -4,7 +4,7 @@ import WaIcon from "./WaIcon.astro";
 const WA_QUOTE = "https://wa.me/62881026050105?text=Hello%20hallovanilla%2C%20I%20would%20like%20to%20request%20a%20quotation%20for%20vanilla%20beans.";
 ---
 
-<section class="bg-white py-24 md:py-28" id="contact">
+<section class="bg-white pt-24 md:pt-28" id="contact">
   <div class="mx-auto w-[min(1260px,92%)]">
     <Reveal client:visible variant="zoom">
       <div class="grid overflow-hidden rounded-[26px] border border-line bg-cream shadow-[0_20px_45px_rgba(30,19,11,0.12)] lg:grid-cols-[1.15fr_0.85fr]">
@@ -14,7 +14,7 @@ const WA_QUOTE = "https://wa.me/62881026050105?text=Hello%20hallovanilla%2C%20I%
           <p class="mb-9 mt-4 max-w-[520px] leading-relaxed text-muted">Whether you are a bakery owner, pastry chef, home baker, or looking for regular supply — we are happy to assist.</p>
           <div class="grid gap-5">
             <a href="https://wa.me/62881026050105" target="_blank" rel="noopener" class="group flex items-center gap-4 rounded-2xl border border-transparent p-2 transition hover:border-line hover:bg-white">
-              <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-[#25D366] text-white shadow-sm transition group-hover:scale-110">
+              <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-pod text-cream shadow-sm transition group-hover:scale-110">
                 <WaIcon size={22} />
               </div>
               <div><small class="mb-0.5 block text-[0.74rem] font-bold uppercase tracking-[0.12em] text-toffee">WhatsApp</small><strong class="text-[1.05rem]">+62 881-0260-50105</strong></div>
@@ -44,7 +44,7 @@ const WA_QUOTE = "https://wa.me/62881026050105?text=Hello%20hallovanilla%2C%20I%
           <span class="mb-2.5 block text-[0.75rem] font-bold uppercase tracking-[0.18em] text-amber-light">Direct Quotation</span>
           <h3 class="font-serif-display mb-3.5 text-4xl font-medium">Need a quotation?</h3>
           <p class="mb-8 text-[0.95rem] leading-relaxed text-[#D3C3B6]">Send variety (Planifolia / Tahitian / Powder) + quantity via WhatsApp — or email us anytime.</p>
-          <a href={WA_QUOTE} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-3 rounded-full bg-[#25D366] px-8 py-4 text-[1rem] font-bold text-white shadow-[0_10px_25px_rgba(37,211,102,0.35)] transition hover:-translate-y-1 hover:bg-[#20BA5A]">
+          <a href={WA_QUOTE} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-3 rounded-full bg-pod px-8 py-4 text-[1rem] font-bold text-cream shadow-[0_10px_25px_rgba(35,23,14,0.35)] transition hover:-translate-y-1 hover:bg-[#3B2618]">
             <WaIcon size={20} />
             <span>Chat on WhatsApp</span>
           </a>
@@ -57,19 +57,22 @@ const WA_QUOTE = "https://wa.me/62881026050105?text=Hello%20hallovanilla%2C%20I%
       </div>
     </Reveal>
 
-    <Reveal client:visible variant="up" delay={0.1}>
-      <div class="mt-12 overflow-hidden rounded-[20px] border border-line bg-cream shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-white px-7 py-5">
-          <div class="flex items-center gap-3">
-            <div class="h-3 w-3 rounded-full bg-[#25D366] shadow-[0_0_12px_#25D366]"></div>
-            <div><span class="text-[0.92rem] font-bold">Direct Surabaya Hub & Warehousing</span><span class="ml-1.5 hidden text-[0.8rem] text-muted sm:inline">• Banyu Urip Wetan 5 No. 15</span></div>
-          </div>
-          <a href="https://maps.google.com/?q=Banyu+Urip+Wetan+5+No+15+Surabaya" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-full border border-line bg-sand px-4 py-2 text-[0.82rem] font-semibold text-pod transition hover:bg-amber-glow hover:text-night-deep">Open in Google Maps ↗</a>
-        </div>
-        <div class="h-[380px] w-full bg-[#EAE6DF]">
-          <iframe title="hallovanilla Location Map" src="https://maps.google.com/maps?q=Banyu%20Urip%20Wetan%205%20No.%2015,%20Surabaya,%20East%20Java,%20Indonesia&t=&z=15&ie=UTF8&iwloc=&output=embed" class="h-full w-full border-0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
+  </div>
+
+  <!-- Peta full-bleed menempel footer: grayscale sampai di-hover, tanpa border -->
+  <div class="group relative mt-16 h-[420px] w-full overflow-hidden md:h-[480px]">
+    <iframe title="hallovanilla Location Map" src="https://maps.google.com/maps?q=Banyu%20Urip%20Wetan%205%20No.%2015,%20Surabaya,%20East%20Java,%20Indonesia&t=&z=15&ie=UTF8&iwloc=&output=embed" class="h-full w-full border-0 grayscale transition-all duration-700 group-hover:grayscale-0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div aria-hidden class="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white via-white/30 to-transparent"></div>
+    <div aria-hidden class="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-night-deep/60 to-transparent"></div>
+    <div class="absolute bottom-6 left-[4%] right-[4%] sm:right-auto">
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-3 rounded-2xl bg-white/90 px-6 py-4 shadow-[0_20px_50px_rgba(15,8,4,0.35)] backdrop-blur-md">
+        <span class="flex items-center gap-2.5">
+          <span class="h-2.5 w-2.5 rounded-full bg-[#25D366] shadow-[0_0_12px_#25D366]"></span>
+          <span class="text-[0.92rem] font-bold text-pod">Direct Surabaya Hub</span>
+        </span>
+        <span class="hidden text-[0.82rem] text-muted sm:inline">Banyu Urip Wetan 5 No. 15</span>
+        <a href="https://maps.google.com/?q=Banyu+Urip+Wetan+5+No+15+Surabaya" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-full bg-pod px-4 py-2 text-[0.82rem] font-semibold text-cream transition hover:bg-amber-deep">Open in Google Maps ↗</a>
       </div>
-    </Reveal>
+    </div>
   </div>
 </section>

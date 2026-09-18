@@ -1,4 +1,4 @@
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useHalloReady } from "./useHalloReady";
 
@@ -24,6 +24,14 @@ export default function HeroVisual() {
   const imgX = useTransform(sx, [0, 1], [-12, 12]);
   const imgY = useTransform(sy, [0, 1], [-10, 10]);
 
+  // Parallax scroll: gambar melayang bergerak beda kecepatan saat halaman di-scroll
+  const { scrollY } = useScroll();
+  const mainY = useTransform(scrollY, [0, 700], [0, 55]);
+  const floatAY = useTransform(scrollY, [0, 700], [0, -85]);
+  const floatARotate = useTransform(scrollY, [0, 700], [-6, 0]);
+  const floatBY = useTransform(scrollY, [0, 700], [0, 95]);
+  const floatBRotate = useTransform(scrollY, [0, 700], [6, 12]);
+
   // Slideshow fade — jalan setelah veil terangkat
   const [slide, setSlide] = useState(0);
   useEffect(() => {
@@ -46,6 +54,7 @@ export default function HeroVisual() {
   };
 
   return (
+    <motion.div style={{ y: mainY }} className="relative mx-auto w-full max-w-[520px]">
     <motion.div
       ref={ref}
       onMouseMove={onMove}
@@ -57,7 +66,7 @@ export default function HeroVisual() {
       animate={ready ? { opacity: 1, scale: 1, y: 0 } : {}}
       transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
       style={{ perspective: 1000 }}
-      className="relative mx-auto w-full max-w-[500px]"
+      className="relative w-full"
     >
       {/* cahaya lembut di belakang foto */}
       <div aria-hidden className="absolute -inset-10 rounded-[40px] bg-gradient-to-br from-amber-glow/25 via-amber-glow/10 to-transparent blur-3xl" />
@@ -124,22 +133,39 @@ export default function HeroVisual() {
         </motion.div>
       </motion.div>
 
+      {/* foto vanilla melayang — Planifolia (parallax scroll ke atas) */}
       <motion.div
-        initial={{ opacity: 0, y: -16, scale: 0.9 }}
-        animate={ready ? { opacity: 1, y: 0, scale: 1 } : {}}
-        transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 18 }}
-        className="absolute -top-5 right-3 md:-right-5"
+        initial={{ opacity: 0, scale: 0.6, y: 30 }}
+        animate={ready ? { opacity: 1, scale: 1, y: 0 } : {}}
+        transition={{ delay: 0.85, type: "spring", stiffness: 200, damping: 17 }}
+        style={{ y: floatAY, rotate: floatARotate }}
+        className="absolute -left-3 top-16 z-10 md:-left-10"
       >
         <motion.div
-          animate={{ y: [0, -9, 0] }}
-          transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-          className="flex items-center gap-3.5 rounded-2xl border border-amber-glow/25 bg-white/95 p-4 pr-5 shadow-lg backdrop-blur-md"
+          animate={{ y: [0, -11, 0] }}
+          transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+          className="w-24 rounded-2xl bg-white p-1.5 shadow-[0_20px_45px_rgba(30,19,11,0.25)] md:w-32"
         >
-          <div className="grid h-11 w-11 place-items-center rounded-full bg-tint text-xl text-toffee">★</div>
-          <div>
-            <strong className="block text-[0.85rem] text-cocoa">Patient Curing</strong>
-            <span className="text-xs text-muted">Sweated &amp; slow-conditioned</span>
-          </div>
+          <img src="/vanillaplanifolia.jpeg" alt="Vanilla Planifolia pods" className="h-24 w-full rounded-xl object-cover md:h-32" loading="lazy" />
+          <p className="py-1.5 text-center text-[0.62rem] font-bold uppercase tracking-[0.12em] text-pod md:text-[0.68rem]">Planifolia</p>
+        </motion.div>
+      </motion.div>
+
+      {/* foto vanilla melayang — Tahitian (parallax scroll ke bawah) */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.6, y: 30 }}
+        animate={ready ? { opacity: 1, scale: 1, y: 0 } : {}}
+        transition={{ delay: 1, type: "spring", stiffness: 200, damping: 17 }}
+        style={{ y: floatBY, rotate: floatBRotate }}
+        className="absolute -right-3 bottom-24 z-10 md:-right-8"
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 5.6, ease: "easeInOut", delay: 0.8 }}
+          className="w-24 rounded-2xl bg-white p-1.5 shadow-[0_20px_45px_rgba(30,19,11,0.25)] md:w-32"
+        >
+          <img src="/vanillatahiti.jpeg" alt="Tahitian vanilla pods" className="h-24 w-full rounded-xl object-cover md:h-32" loading="lazy" />
+          <p className="py-1.5 text-center text-[0.62rem] font-bold uppercase tracking-[0.12em] text-pod md:text-[0.68rem]">Tahitian</p>
         </motion.div>
       </motion.div>
 
@@ -163,6 +189,7 @@ export default function HeroVisual() {
           </span>
         </motion.div>
       </motion.div>
+    </motion.div>
     </motion.div>
   );
 }

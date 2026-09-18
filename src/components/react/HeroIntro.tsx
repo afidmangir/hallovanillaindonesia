@@ -27,49 +27,48 @@ const emItem: Variants = {
   },
 };
 
-const WA =
-  "https://wa.me/62881026050105?text=Hello%20hallovanilla.indonesia%2C%20I%20would%20like%20to%20ask%20about%20your%20vanilla%20beans.";
+const WA_QUOTE =
+  "https://wa.me/62881026050105?text=Hello%20hallovanilla.indonesia%2C%20I%20would%20like%20to%20request%20an%20export%20quotation%20for%20vanilla%20beans.";
 
-const POINTS = ["Grade A gourmet pods", "Slow natural curing", "Vacuum-sealed export pack"];
+const POINTS = ["Grade A gourmet lots", "Vacuum-sealed export pack", "Direct Surabaya hub"];
 
 const STATS = [
-  { v: "Grade A", l: "Gourmet Selection" },
+  { v: "Grade A", l: "Gourmet Lots" },
   { v: "30–35%", l: "Ideal Moisture" },
-  { v: "Surabaya", l: "Direct Distribution" },
+  { v: "Bulk", l: "Wholesale Supply" },
 ];
 
 export default function HeroIntro() {
   // Tahan entrance sampai loading veil selesai terangkat
   const ready = useHalloReady();
   return (
-    <motion.div variants={container} initial="hidden" animate={ready ? "show" : "hidden"} className="max-w-[600px]">
+    <motion.div variants={container} initial="hidden" animate={ready ? "show" : "hidden"} className="max-w-[640px]">
       <motion.div
         variants={item}
-        className="mb-6 inline-flex items-center gap-2.5 rounded-full bg-white py-1.5 pl-2 pr-4 shadow-[0_8px_24px_rgba(35,23,14,0.10)]"
+        className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-glow/30 bg-amber-glow/10 px-4 py-1.5 text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-amber-deep"
       >
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-pod px-3 py-1 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-cream">
-          <span className="animate-pulse-dot h-[6px] w-[6px] rounded-full bg-amber-glow" />
-          Single Origin
-        </span>
-        <span className="text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-muted">
-          Surabaya • Indonesia
-        </span>
+        <span className="animate-pulse-dot h-[7px] w-[7px] rounded-full bg-amber-glow shadow-[0_0_10px_#C68B45]" />
+        Indonesian Vanilla • Surabaya
       </motion.div>
 
       <motion.h1
         variants={item}
-        className="font-serif-display max-w-[12ch] text-balance text-[clamp(2.9rem,5.2vw,4.75rem)] font-medium leading-[1.04] tracking-tight text-pod"
+        className="font-serif-display text-[clamp(3.2rem,6vw,5.5rem)] font-medium leading-[1.02] tracking-tight text-pod"
       >
-        Pure aroma.{" "}
-        <motion.em variants={emItem} className="inline-block font-normal italic text-toffee">
+        Pure aroma.
+        <br />
+        <motion.em
+          variants={emItem}
+          className="inline-block font-normal italic text-toffee"
+        >
           Real
         </motion.em>{" "}
         vanilla.
       </motion.h1>
 
-      <motion.p variants={item} className="mb-7 mt-5 max-w-[530px] text-[1.05rem] leading-relaxed text-muted">
-        Carefully selected vanilla beans with distinctive character — from classic, creamy Vanilla Planifolia
-        to elegant, floral Tahitian Vanilla and pure Vanilla Powder.
+      <motion.p variants={item} className="mb-7 mt-5 max-w-[530px] text-[1.1rem] leading-relaxed text-muted">
+        Discover carefully selected vanilla beans with distinctive character — from classic, creamy Vanilla Planifolia
+        to elegant, floral Tahitian Vanilla.
       </motion.p>
 
       <motion.ul variants={item} className="mb-9 flex flex-wrap gap-x-6 gap-y-2.5">
@@ -85,7 +84,7 @@ export default function HeroIntro() {
 
       <motion.div variants={item} className="mb-11 flex flex-wrap items-center gap-4">
         <motion.a
-          href={WA}
+          href={WA_QUOTE}
           target="_blank"
           rel="noopener"
           whileHover={{ y: -3, scale: 1.02 }}
@@ -93,7 +92,7 @@ export default function HeroIntro() {
           className="inline-flex items-center gap-2.5 rounded-full bg-pod px-8 py-4 text-[0.95rem] font-semibold text-cream shadow-[0_14px_30px_rgba(35,23,14,0.30)] transition-colors hover:bg-[#3B2618]"
         >
           <WaIcon size={18} />
-          <span>Ask via WhatsApp</span>
+          <span>Request Export Quotation</span>
         </motion.a>
         <motion.a
           href="#products"
@@ -101,7 +100,7 @@ export default function HeroIntro() {
           whileTap={{ scale: 0.97 }}
           className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 text-[0.95rem] font-semibold text-pod shadow-[0_8px_24px_rgba(35,23,14,0.08)] transition-all hover:text-amber-deep hover:shadow-[0_12px_30px_rgba(198,139,69,0.25)]"
         >
-          <span>Explore Our Vanilla</span>
+          <span>Explore Varieties</span>
           <motion.span
             animate={{ y: [0, 5, 0] }}
             transition={{ repeat: Infinity, duration: 1.8 }}

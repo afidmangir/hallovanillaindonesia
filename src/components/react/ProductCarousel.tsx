@@ -188,15 +188,9 @@ export default function ProductCarousel() {
 
         <div className="relative mb-5 flex items-center justify-between gap-4 px-1 lg:mb-7">
           <div className="flex items-center gap-3 text-[0.75rem] font-semibold uppercase tracking-[0.22em] text-amber-light/90 lg:text-[0.8rem]">
-            <motion.span
-              animate={{ x: [0, 10, 0] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-              className="inline-block"
-            >
-              →
-            </motion.span>
-            Scroll to explore
-          </div>
+              <span className="h-1.5 w-1.5 rounded-full bg-amber-glow" />
+              Signature Collection
+            </div>
           <div className="flex gap-2">
             {[-1, 1].map((d) => (
               <motion.button
@@ -217,10 +211,10 @@ export default function ProductCarousel() {
         <motion.div ref={trackRef} style={{ x }} className="relative flex w-max items-stretch gap-6 will-change-transform lg:gap-8">
           <div className="flex w-[70vw] min-w-[230px] max-w-[360px] shrink-0 flex-col justify-center pr-2 sm:w-[300px]">
             <p className="font-serif-display text-[clamp(1.5rem,2.4vw,2.6rem)] leading-tight text-cream">
-              Glide <span className="italic text-amber-light">sideways</span> as you scroll
+              Three profiles, <span className="italic text-amber-light">one origin</span>
             </p>
             <p className="mt-4 max-w-[300px] text-[0.88rem] leading-relaxed text-[#CFBEB2] lg:text-[0.95rem]">
-              Keep scrolling down — our three signature varieties drift past one by one.
+              Planifolia, Tahitian &amp; Powder — each with its own character. Find yours.
             </p>
           </div>
 
@@ -230,7 +224,7 @@ export default function ProductCarousel() {
 
           <div className="flex w-[70vw] min-w-[230px] max-w-[340px] shrink-0 flex-col items-start justify-center rounded-[26px] border border-dashed border-amber-glow/40 p-6 sm:w-[300px] lg:p-8">
             <p className="font-serif-display text-xl italic text-amber-light lg:text-2xl">Not sure which one?</p>
-            <p className="mt-2 text-sm leading-relaxed text-[#CFBEB2]">Chat kami — kami bantu pilihkan profil yang pas.</p>
+            <p className="mt-2 text-sm leading-relaxed text-[#CFBEB2]">Chat with us — we&apos;ll help you pick the right profile.</p>
             <a
               href="https://wa.me/62881026050105?text=Hello%20hallovanilla%2C%20I%20need%20help%20choosing%20vanilla."
               target="_blank"

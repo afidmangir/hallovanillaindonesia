@@ -13,9 +13,6 @@ const LINKS = [
 ---
 
 <header id="siteHeader">
-  <!-- Blur gradient di belakang header: konten yang naik mendekati header larut ke dalam blur yang semakin tebal -->
-  <div class="header-blur" aria-hidden="true"></div>
-
   <!-- Pill melayang: transparan di atas, kaca blur saat scroll. Tanpa border. -->
   <div class="nav-pill">
     <div class="nav-shell flex items-center justify-between gap-4">
@@ -41,7 +38,7 @@ const LINKS = [
           <a href={IG} target="_blank" rel="noopener" aria-label="Instagram hallovanilla.indonesia" title="@hallovanilla.indonesia" class="nav-icon">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
-          <a href={WA} target="_blank" rel="noopener" aria-label="WhatsApp hallovanilla" title="+62 881-0260-50105" class="grid h-10 w-10 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_8px_20px_rgba(37,211,102,0.35)] transition hover:-translate-y-0.5 hover:bg-[#20BA5A]">
+          <a href={WA} target="_blank" rel="noopener" aria-label="WhatsApp hallovanilla" title="+62 881-0260-50105" class="grid h-10 w-10 place-items-center rounded-full bg-pod text-cream shadow-[0_8px_20px_rgba(35,23,14,0.35)] transition hover:-translate-y-0.5 hover:bg-[#3B2618]">
             <WaIcon size={18} />
           </a>
         </div>
@@ -52,20 +49,39 @@ const LINKS = [
     </div>
   </div>
 
-  <!-- Mobile menu: kartu kaca di bawah pill -->
+  <!-- Mobile menu fullscreen -->
   <div id="mobileMenu" class="lg:hidden" aria-hidden="true">
-    <div class="menu-clip overflow-hidden">
-      <div class="menu-card">
-        <nav class="flex flex-col gap-1" aria-label="Mobile">
+    <div class="menu-inner">
+      <div aria-hidden class="menu-glow menu-glow-a"></div>
+      <div aria-hidden class="menu-glow menu-glow-b"></div>
+      <div class="menu-content">
+        <p class="menu-eyebrow"><span class="menu-star">✦</span> Menu <span class="menu-star">✦</span></p>
+        <nav class="flex flex-col" aria-label="Mobile">
           {LINKS.map((l, i) => (
             <a href={l.href} data-spy style={`--i:${i}`} class="m-link">
-              <span>{l.label}</span><span class="m-arrow">→</span>
+              <span class="m-num">0{i + 1}</span>
+              <span class="m-label">{l.label}</span>
+              <span class="m-arrow">→</span>
             </a>
           ))}
         </nav>
-        <a href={WA} target="_blank" rel="noopener" style="--i:5" class="m-cta">
-          <WaIcon size={18} /><span>Chat WhatsApp</span>
-        </a>
+        <div class="menu-foot">
+          <a href={WA} target="_blank" rel="noopener" class="m-cta">
+            <WaIcon size={19} /><span>Chat WhatsApp</span>
+          </a>
+          <div class="m-socials">
+            <a href={EMAIL} aria-label="Email" class="m-soc">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            </a>
+            <a href={IG} target="_blank" rel="noopener" aria-label="Instagram" class="m-soc">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href={WA} target="_blank" rel="noopener" aria-label="WhatsApp" class="m-soc m-wa">
+              <WaIcon size={18} />
+            </a>
+          </div>
+          <p class="m-addr">Banyu Urip Wetan 5 No. 15, Surabaya</p>
+        </div>
       </div>
     </div>
   </div>
@@ -81,35 +97,11 @@ const LINKS = [
     z-index: 100;
     pointer-events: none; /* hanya pill & menu yang bisa diklik */
   }
-  #siteHeader .nav-pill,
-  #siteHeader #mobileMenu {
+  #siteHeader .nav-pill {
     pointer-events: auto;
   }
 
-  /* Blur gradient di belakang header — gaussian blur murni dari konten,
-     tanpa tinta putih; tebal saat scroll, pudar ke bawah */
-  #siteHeader .header-blur {
-    position: absolute;
-    top: -12px;
-    left: 0;
-    right: 0;
-    height: 160px;
-    pointer-events: none;
-    background: transparent;
-    -webkit-backdrop-filter: blur(calc(var(--hp) * 18px)) saturate(1.2);
-    backdrop-filter: blur(calc(var(--hp) * 18px)) saturate(1.2);
-    -webkit-mask-image: linear-gradient(to bottom, black 25%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 25%, transparent 100%);
-  }
-
-  /* Di mobile jangkauan blur diperpanjang ke bawah */
-  @media (max-width: 768px) {
-    #siteHeader .header-blur {
-      height: 240px;
-    }
-  }
-
-  /* Pill melayang ala Dreamina — full transparan saat di atas */
+  /* Pill glassmorphism — highlight kaca + blur jenuh saat scroll, bersih saat di atas */
   #siteHeader .nav-pill {
     position: relative;
     z-index: 1;
@@ -117,14 +109,15 @@ const LINKS = [
     margin-inline: auto;
     border-radius: 22px;
     padding-inline: clamp(0.9rem, 2.5vw, 1.4rem);
-    background: linear-gradient(
-      to bottom,
-      rgba(250, 247, 242, calc(var(--hp) * 0.82)),
-      rgba(250, 247, 242, calc(var(--hp) * 0.66))
-    );
-    -webkit-backdrop-filter: blur(calc(var(--hp) * 20px)) saturate(1.5);
-    backdrop-filter: blur(calc(var(--hp) * 20px)) saturate(1.5);
-    box-shadow: 0 24px 55px -22px rgba(35, 23, 14, calc(var(--hp) * 0.28));
+    background:
+      linear-gradient(to bottom, rgba(255, 255, 255, calc(var(--hp) * 0.38)), rgba(255, 255, 255, 0) 45%),
+      linear-gradient(to bottom, rgba(250, 247, 242, calc(var(--hp) * 0.72)), rgba(243, 233, 219, calc(var(--hp) * 0.62)));
+    -webkit-backdrop-filter: blur(calc(var(--hp) * 22px)) saturate(1.8);
+    backdrop-filter: blur(calc(var(--hp) * 22px)) saturate(1.8);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, calc(var(--hp) * 0.65)),
+      inset 0 -1px 0 rgba(255, 255, 255, calc(var(--hp) * 0.22)),
+      0 24px 55px -22px rgba(35, 23, 14, calc(var(--hp) * 0.32));
   }
   #siteHeader .nav-shell {
     height: calc(68px - (var(--hp) * 10px));
@@ -200,74 +193,192 @@ const LINKS = [
   #siteHeader .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
   #siteHeader .nav-burger.open span:nth-child(3) { width: 24px; transform: translateY(-8px) rotate(-45deg); }
 
-  /* Panel mobile — kartu kaca selebar pill */
+  /* Panel mobile FULLSCREEN — circle expand dari tombol burger */
   #mobileMenu {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-rows: 0fr;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  #mobileMenu .menu-clip { min-height: 0; }
-  #mobileMenu .menu-card {
-    width: min(1260px, 94%);
-    margin: 8px auto 0;
-    border-radius: 22px;
-    padding: 0.75rem;
-    background: rgba(250, 247, 242, 0.88);
-    -webkit-backdrop-filter: blur(24px) saturate(1.5);
-    backdrop-filter: blur(24px) saturate(1.5);
-    box-shadow: 0 24px 60px rgba(35, 23, 14, 0.22);
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    visibility: hidden;
+    pointer-events: none;
+    clip-path: circle(0px at calc(100% - 56px) 48px);
+    transition:
+      clip-path 0.7s cubic-bezier(0.76, 0, 0.24, 1),
+      visibility 0s linear 0.7s;
   }
   #mobileMenu.open {
-    grid-template-rows: 1fr;
-    opacity: 1;
-    transform: none;
+    visibility: visible;
+    pointer-events: auto;
+    clip-path: circle(142% at calc(100% - 56px) 48px);
+    transition:
+      clip-path 0.7s cubic-bezier(0.76, 0, 0.24, 1),
+      visibility 0s;
+  }
+  #mobileMenu .menu-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    /* solid opaque + cahaya kuning soft */
+    background:
+      radial-gradient(120% 60% at 50% -10%, rgba(212, 154, 86, 0.16), rgba(212, 154, 86, 0) 60%),
+      linear-gradient(165deg, #FBF7F0 0%, #F6ECDC 55%, #F1E2CB 100%);
+  }
+  /* bola cahaya kuning */
+  #mobileMenu .menu-glow {
+    position: absolute;
+    border-radius: 9999px;
+    pointer-events: none;
+    filter: blur(70px);
+  }
+  #mobileMenu .menu-glow-a {
+    width: 300px;
+    height: 300px;
+    top: -90px;
+    right: -80px;
+    background: rgba(216, 170, 110, 0.28);
+    animation: menuGlowDrift 7s ease-in-out infinite alternate;
+  }
+  #mobileMenu .menu-glow-b {
+    width: 260px;
+    height: 260px;
+    bottom: -70px;
+    left: -90px;
+    background: rgba(210, 160, 100, 0.22);
+    animation: menuGlowDrift 9s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes menuGlowDrift {
+    from { transform: translate(0, 0) scale(1); opacity: 0.85; }
+    to { transform: translate(-26px, 30px) scale(1.15); opacity: 1; }
+  }
+  #mobileMenu .menu-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: calc(104px + env(safe-area-inset-top)) 8% calc(28px + env(safe-area-inset-bottom));
+  }
+  #mobileMenu .menu-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-amber-deep);
+  }
+  #mobileMenu .menu-star {
+    color: var(--color-amber-glow);
+    text-shadow: 0 0 8px rgba(212, 154, 86, 0.4);
   }
   #mobileMenu .m-link {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 1rem;
-    padding: 0.8rem 1.1rem;
-    font-size: 0.98rem;
-    font-weight: 600;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(35, 23, 14, 0.12);
     color: var(--color-cocoa);
     opacity: 0;
-    translate: 0 12px;
-    transition: opacity 0.35s ease, translate 0.45s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease;
+    translate: 0 28px;
+    transition: opacity 0.45s ease, translate 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     transition-delay: 0s;
   }
   #mobileMenu.open .m-link {
     opacity: 1;
     translate: 0 0;
-    transition-delay: calc(0.06s + var(--i) * 0.05s);
+    transition-delay: calc(0.28s + var(--i) * 0.07s);
   }
-  #mobileMenu .m-link:hover { background: rgba(255, 255, 255, 0.7); }
-  #mobileMenu .m-link.active { background: var(--color-pod); color: var(--color-cream); }
-  #mobileMenu .m-link .m-arrow { color: var(--color-amber-deep); }
-  #mobileMenu .m-link.active .m-arrow { color: var(--color-amber-light); }
+  #mobileMenu .m-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--color-amber-deep);
+  }
+  #mobileMenu .m-label {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 9vw, 2.9rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  #mobileMenu .m-link.active .m-label {
+    font-style: italic;
+    color: var(--color-night-deep);
+    background: linear-gradient(120deg, #ECD3A8, #D9AC66);
+    border-radius: 9999px;
+    padding: 0.15rem 1.1rem 0.3rem;
+    margin-left: -0.4rem;
+    box-shadow: 0 10px 24px -10px rgba(198, 139, 69, 0.5), 0 0 16px rgba(212, 154, 86, 0.25);
+  }
+  #mobileMenu .m-arrow {
+    margin-left: auto;
+    font-size: 1.4rem;
+    color: var(--color-amber-deep);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  #mobileMenu .m-link.active .m-arrow,
+  #mobileMenu .m-link:hover .m-arrow {
+    opacity: 1;
+    transform: none;
+  }
+  #mobileMenu .menu-foot {
+    margin-top: auto;
+    padding-top: 2rem;
+    opacity: 0;
+    translate: 0 20px;
+    transition: opacity 0.45s ease, translate 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #mobileMenu.open .menu-foot {
+    opacity: 1;
+    translate: 0 0;
+    transition-delay: 0.65s;
+  }
   #mobileMenu .m-cta {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.6rem;
-    margin-top: 0.5rem;
-    border-radius: 1rem;
-    background: #25d366;
-    color: #fff;
+    border-radius: 1.1rem;
+    background: var(--color-pod);
+    color: var(--color-cream);
     font-weight: 700;
-    padding: 0.85rem;
-    opacity: 0;
-    translate: 0 12px;
-    transition: opacity 0.35s ease, translate 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: 1rem;
+    padding: 1rem;
+    box-shadow: 0 16px 34px -12px rgba(35, 23, 14, 0.55), 0 0 18px rgba(212, 154, 86, 0.18);
   }
-  #mobileMenu.open .m-cta {
-    opacity: 1;
-    translate: 0 0;
-    transition-delay: calc(0.06s + var(--i) * 0.05s);
+  #mobileMenu .m-socials {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.1rem;
+  }
+  #mobileMenu .m-soc {
+    display: grid;
+    place-items: center;
+    height: 2.75rem;
+    width: 2.75rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--color-cocoa);
+    box-shadow: 0 8px 20px -8px rgba(35, 23, 14, 0.3);
+  }
+  #mobileMenu .m-soc.m-wa {
+    background: var(--color-pod);
+    color: var(--color-cream);
+  }
+  #mobileMenu .m-addr {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--color-muted);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -297,15 +408,19 @@ const LINKS = [
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
 
-  // Toggle menu mobile
+  // Toggle menu mobile fullscreen (+ kunci scroll + Escape)
   const setMenu = (open: boolean) => {
     mobileMenu?.classList.toggle('open', open);
     menuBtn?.classList.toggle('open', open);
     menuBtn?.setAttribute('aria-expanded', String(open));
     mobileMenu?.setAttribute('aria-hidden', String(!open));
+    document.documentElement.style.overflow = open ? 'hidden' : '';
   };
   menuBtn?.addEventListener('click', () => setMenu(!mobileMenu?.classList.contains('open')));
   mobileMenu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setMenu(false);
+  });
   window.addEventListener('resize', () => {
     if (window.innerWidth >= 1024) setMenu(false);
   });
